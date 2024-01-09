@@ -1,0 +1,33 @@
+<h1>Issue Tracker - All Issues</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Priority</th>
+      <th>Status</th>
+      <th>Assigned To</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @issues.each do |issue| %>
+      <tr>
+        <td><%= issue.title %></td>
+        <td><%= issue.description %></td>
+        <td><%= issue.priority %></td>
+        <td><%= issue.status %></td>
+        <td>User : <%= issue.assigned_to ? User.find(issue.assigned_to).name : 'Not Assigned' %></td>
+
+        <td>
+          <%= link_to 'Show', issue %>
+          <%= link_to 'Edit', edit_issue_path(issue) if current_user.admin? %>
+          <%= link_to 'Destroy', issue, method: :delete, data: { confirm: 'Are you sure?' } if current_user.admin? %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New Issue', new_issue_path %>

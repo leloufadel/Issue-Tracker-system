@@ -1,0 +1,27 @@
+<div class="modal-content animate">
+<div class="imgcontainer">
+      <img src="https://th.bing.com/th/id/OIP.VSIVV3b5Nblo7gM7N4x9zgAAAA?rs=1&pid=ImgDetMain" alt="Avatar" class="avatar">
+    </div>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="container">
+          <%= f.label :Email %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email", class: "input-new" %> <!-- Use the input-new class -->
+                <%= f.label :Password %>
+
+        <%= f.password_field :password, autocomplete: "current-password", placeholder: "Password", class: "input-new" %> <!-- Use the input-new class -->
+      </div>
+      <% if devise_mapping.rememberable? %>
+        <div class="form-group form-check">
+          <%= f.check_box :remember_me, class: "form-check-input" %>
+          <%= f.label :remember_me, class: "form-check-label" %>
+        </div>
+      <% end %>
+      <div class="btn-container"> <!-- Center the button -->
+        <%= f.submit "Log in", class: "btn-new" %> <!-- Use the btn-new class for the button -->
+      </div>
+    <% end %>
+    <div class="text-center lik-sec">
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<h1>Issue Tracker - Issue Details</h1>
+
+<p><strong>Title:</strong> <%= @issue.title %></p>
+<p><strong>Description:</strong> <%= @issue.description %></p>
+<p><strong>Priority:</strong> <%= @issue.priority %></p>
+<p><strong>Status:</strong> <%= @issue.status %></p>
+<p><strong>Assigned To User:</strong> <%= @issue.assigned_to %></p>
+<%= link_to 'view file', @issue.file %></li>
+<% if @issue.attachments.any? %>y
+  <h2>Attachments</h2>
+  <ul>
+    <% @issue.attachments.each do |attachment| %>
+      <li><%= link_to attachment.file, url_for(attachment.file) %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= link_to 'Edit', edit_issue_path(@issue) if current_user.admin? %>
+<%= link_to 'Back', issues_path %>

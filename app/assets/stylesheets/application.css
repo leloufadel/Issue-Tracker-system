@@ -1,0 +1,72 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+.input-new{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+
+  .btn-new{
+    background-color: #04AA6D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    font-size: larger;
+  }
+  
+  button:hover {
+    opacity: 0.8;
+  }
+  
+  
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+    position: relative;
+  }
+  img.avatar {
+    width: 16%;
+    border-radius: 50%;
+  }
+  
+  .container {
+    padding: 16px;
+  }
+  /* The Modal (background) */
+
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #faf1f1;
+    /* margin: 5% auto 15% auto;  */
+    margin: 10% 13%;
+    border: 2px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+  }
+  .form-heading {
+    text-align: center;
+  }
+ /* Add this to your CSS file, e.g., app/assets/stylesheets/application.css or application.scss */
+.form-control {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  color: black; /* Set the default text color */
+}
+
+.form-control option {
+  color: black; /* Set the text color for options */
+}
+
+.form-control:hover,
+.form-control option:hover {
+  background-color: #007bff; /* Set the background color on hover */
+  color: rgb(212, 11, 11) !important; /* Set the text color on hover with !important to ensure it takes precedence */
+}

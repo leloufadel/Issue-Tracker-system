@@ -1,0 +1,59 @@
+<%= form_with(model: issue, local: true) do |form| %>
+  <% if issue.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(issue.errors.count, 'error') %> prohibited this issue from being saved:</h2>
+
+      <ul>
+        <% issue.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="modal-content animate">
+
+  <div class="container">
+    <%= form.label :Title %>
+    <%= form.text_field :title, placeholder: "Title", class: "input-new"%>
+
+    <%= form.label :description %>
+    <%= form.text_area :description , placeholder: "Descriptions", class: "input-new"%>
+  
+
+    <%= form.label :priority %>
+    <%= form.number_field :priority, placeholder: "Priority", class: "input-new" %>
+
+    <%= form.label :status %>
+    <%= form.text_field :status , placeholder: "Status", class: "input-new" %>
+  
+ <%= form.label :file %>
+    <%= form.file_field :file , placeholder: "file", class: "input-new" %>
+
+    <%= form.label :assigned_to %>
+<%= form.collection_select :assigned_to, User.all, :id, :email, { prompt: 'Select User' }, class: "form-control", id: 'assigned_to_select' %>
+
+<div class="field">
+  <%= form.label :user_id %>
+  <%= form.hidden_field :user_id, id: 'user_id_hidden' %>
+</div>
+
+<!-- Add this script to your HTML, possibly in the head section or at the end of the body -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $('#assigned_to_select').change(function () {
+      var selectedUserId = $(this).val();
+      $('#user_id_hidden').val(selectedUserId);
+    });
+  });
+</script>
+
+</div>
+
+
+  <div class="actions">
+    <%= form.submit "submit", class:"btn-new" %>
+  </div>
+  
+<% end %>
+
