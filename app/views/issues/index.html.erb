@@ -1,6 +1,8 @@
+
+
 <h1>Issue Tracker - All Issues</h1>
 
-<table>
+<table  class="styled-table">
   <thead>
     <tr>
       <th>Title</th>
@@ -18,7 +20,7 @@
         <td><%= issue.description %></td>
         <td><%= issue.priority %></td>
         <td><%= issue.status %></td>
-        <td>User : <%= issue.assigned_to ? User.find(issue.assigned_to).name : 'Not Assigned' %></td>
+        <td><%= issue.assigned_to ? User.find(issue.assigned_to).name : 'Not Assigned' %></td>
 
         <td>
           <%= link_to 'Show', issue %>
@@ -29,5 +31,6 @@
     <% end %>
   </tbody>
 </table>
-
-<%= link_to 'New Issue', new_issue_path %>
+<p class="link">
+  <%= link_to 'New Issue', new_issue_path, class: 'attractive-link' %>
+</p>

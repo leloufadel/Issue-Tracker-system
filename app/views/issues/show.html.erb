@@ -1,19 +1,23 @@
 <h1>Issue Tracker - Issue Details</h1>
-
+<div class ="itmes">
 <p><strong>Title:</strong> <%= @issue.title %></p>
 <p><strong>Description:</strong> <%= @issue.description %></p>
 <p><strong>Priority:</strong> <%= @issue.priority %></p>
 <p><strong>Status:</strong> <%= @issue.status %></p>
-<p><strong>Assigned To User:</strong> <%= @issue.assigned_to %></p>
-<%= link_to 'view file', @issue.file %></li>
+<p><strong>Assigned To User :</strong>
+
+<%= @issue.assigned_to ? User.find(@issue.assigned_to).name : 'Not Assigned' %>
+ID:  <%= @issue.assigned_to %>
+</p>
+<%= link_to 'view file', @issue.file, class:'attractive-link' %>
 <% if @issue.attachments.any? %>y
   <h2>Attachments</h2>
   <ul>
     <% @issue.attachments.each do |attachment| %>
-      <li><%= link_to attachment.file, url_for(attachment.file) %></li>
+      <li><%= link_to attachment.file, url_for(attachment.file),class: 'attractive-link' %></li>
     <% end %>
   </ul>
 <% end %>
-
+</div>
 <%= link_to 'Edit', edit_issue_path(@issue) if current_user.admin? %>
-<%= link_to 'Back', issues_path %>
+<%= link_to 'Back', issues_path, class: 'attractive-link' %>
