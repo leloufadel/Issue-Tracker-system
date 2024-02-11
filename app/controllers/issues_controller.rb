@@ -4,10 +4,14 @@ class IssuesController < ApplicationController
   
     def index
       @issues = Issue.all
+     @statuses = Issue.distinct.pluck(:status)
     end
   
     def show
+      @issue = Issue.find(params[:id])
+      @users = User.all # Or whatever logic you use to fetch users
     end
+    
   
     def new
       @issue = Issue.new
