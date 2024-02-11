@@ -1,8 +1,37 @@
-
-
+# frozen_string_literal: false
 <h1>Issue Tracker - All Issues</h1>
 
-<table  class="styled-table">
+<%= form_tag(issues_path, method: "get", class: "filter-form") do %>
+  <%= select_tag(:status, options_for_select(["All"] + @statuses), { prompt: "Filter by Status", id: "status-select" }) %>
+  <%= select_tag(:assigned_to, options_for_select(["All"] + User.all.map { |user| [user.name] }), { prompt: "Filter by Assignee"}) %>
+  <%= submit_tag "Filter", class: "btn btn-primary" %>
+<% end %>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const statusSelect = document.getElementById('status-select');
+    const assignedToSelect = document.getElementById('assigned-to-select');
+    const allUsersByStatus = <%= @users_by_status.to_json.html_safe %>;
+
+    statusSelect.addEventListener('change', function() {
+      const selectedStatus = statusSelect.value;
+      const usersForStatus = allUsersByStatus[selectedStatus] || [];
+
+      assignedToSelect.innerHTML = '';
+      assignedToSelect.disabled = usersForStatus.length === 0;
+
+      usersForStatus.forEach(function(user) {
+        const option = document.createElement('option');
+        option.textContent = user.name;
+        assignedToSelect.appendChild(option);
+      });
+    });
+  });
+</script>
+
+
+
+<table class="styled-table">
   <thead>
     <tr>
       <th>Title</th>
@@ -31,6 +60,7 @@
     <% end %>
   </tbody>
 </table>
+
 <p class="link">
   <%= link_to 'New Issue', new_issue_path, class: 'attractive-link' %>
 </p>
